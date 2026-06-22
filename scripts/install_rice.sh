@@ -45,7 +45,7 @@ echo "📂 4/5 - Restaurando configuraciones visuales (Dotfiles)..."
 mkdir -p ~/.config
 
 # Copiar directorios de .config
-for folder in hypr caelestia kitty cava spicetify btop fastfetch fish fuzzel; do
+for folder in hypr caelestia kitty cava spicetify btop fastfetch fish fuzzel systemd; do
     if [ -d "$DOTFILES_DIR/$folder" ]; then
         echo "Copiando configuración de $folder..."
         cp -r "$DOTFILES_DIR/$folder" ~/.config/
@@ -59,6 +59,13 @@ for file in .bashrc .zshrc .gitconfig; do
         cp "$DOTFILES_DIR/$file" ~/
     fi
 done
+
+# Copiar directorios de .local
+if [ -d "$DOTFILES_DIR/local" ]; then
+    echo "Copiando configuraciones locales (.local)..."
+    mkdir -p ~/.local
+    cp -r "$DOTFILES_DIR/local/"* ~/.local/
+fi
 
 # Copiar starship
 if [ -f "$DOTFILES_DIR/starship.toml" ]; then

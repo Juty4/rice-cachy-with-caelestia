@@ -1,0 +1,5 @@
+#!/bin/bash
+# Hay un error conocido en Discord donde la versión nativa de Wayland rompe la captura de pantalla
+# Forzamos a que use XWayland (X11) pero manteniendo el soporte para capturar pantallas de Wayland con PipeWire
+unset ELECTRON_OZONE_PLATFORM_HINT
+exec /usr/bin/discord --ozone-platform=x11 --enable-features=WebRTCPipeWireCapturer "$@"
